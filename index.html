@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- ROOT & RESET (TETAP SAMA SEPERTI KODE AWAL ANDA) --- */
+        /* --- ROOT & RESET --- */
         :root {
             --putih-gading: #FAF9F6;
             --cokelat-kayu: #5D4037;
@@ -42,7 +42,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR (SHORTCUT ATAS) --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -83,7 +83,7 @@
             color: var(--hijau-segar);
         }
 
-        /* --- ANIMASI --- */
+        /* --- ANIMASI FADE-IN FLOATING UP --- */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -148,6 +148,11 @@
             color: white;
         }
 
+        .btn-primary:hover {
+            background-color: #3d8b40;
+            transform: scale(1.05);
+        }
+
         /* --- MENU CAROUSEL --- */
         .menu-carousel {
             display: flex;
@@ -158,7 +163,10 @@
             scroll-snap-type: x mandatory;
             cursor: grab;
             user-select: none;
-            scroll-behavior: smooth;
+        }
+
+        .menu-carousel:active {
+            cursor: grabbing;
         }
 
         .menu-carousel::-webkit-scrollbar { display: none; }
@@ -171,9 +179,13 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             scroll-snap-align: center;
             border: 1px solid #eee;
-            flex-shrink: 0;
+            pointer-events: none;
         }
         
+        .menu-card a {
+            pointer-events: auto;
+        }
+
         .menu-card img {
             width: 100%;
             height: 200px;
@@ -200,48 +212,16 @@
             color: white;
         }
 
-        /* --- SPECIAL EVENT SECTION (MANG ENGKING STYLE) --- */
-        .event-section {
-            background-color: #fff;
-            padding: 80px 0;
-        }
-        .event-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        .event-card {
-            position: relative;
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .event-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        .event-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .event-card:hover img { transform: scale(1.1); }
-
-        /* --- RAHASIA RESEP --- */
+        /* --- RAHASIA RESEP SECTION --- */
         .recipe-section {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 40px;
+        }
+
+        .recipe-img, .recipe-text {
+            flex: 1 1 300px;
         }
 
         .recipe-img img {
@@ -256,7 +236,27 @@
             margin-bottom: 20px;
         }
 
-        /* --- RESERVASI --- */
+        /* --- KELEBIHAN --- */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .feature-item i { color: var(--hijau-segar); font-size: 1.5rem; }
+
+        /* --- RESERVASI FORM SECTION --- */
         .reservation-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -272,19 +272,164 @@
             background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(93, 64, 55, 0.85)), 
                         url('warung-tuman.width-800.format-webp.webp');
             background-size: cover;
-            padding: 50px;
+            background-position: center;
             color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .reservation-form { flex: 1 1 300px; padding: 50px; }
-        .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; }
+        .reservation-form {
+            flex: 1 1 300px;
+            padding: 50px;
+        }
 
-        /* --- FOOTER & WA --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--hijau-segar);
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+
+        /* --- REVIEWS --- */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--hijau-segar);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stars { color: #f1c40f; margin-bottom: 10px; }
+        .review-card p { font-style: italic; margin-bottom: 15px; font-size: 0.95rem; }
+        .reviewer { font-weight: 600; font-size: 0.9rem; }
+
+        /* --- FOOTER --- */
         footer {
-            background: #1A1A1A;
-            color: white;
+            background: linear-gradient(rgba(26, 26, 26, 0.92), rgba(26, 26, 26, 0.92)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-light);
             padding: 80px 0 20px 0;
         }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--hijau-segar);
+        }
+
+        .contact-list p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover { background: var(--hijau-segar); }
+
+        /* Maps Simulation */
+        .map-box {
+            width: 100%;
+            height: 200px;
+            background: #eee;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://user-images.githubusercontent.com/14141031/116345821-2e658080-a7d0-11eb-9878-5a676063e528.png');
+            background-size: cover;
+        }
+
+        .map-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* --- FLOATING WHATSAPP --- */
         .wa-float {
             position: fixed;
             bottom: 30px;
@@ -298,22 +443,46 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
             z-index: 9999;
-            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .wa-float:hover { transform: scale(1.1); color: white; }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+                gap: 10px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            html { scroll-padding-top: 120px; }
+            .container { padding: 50px 20px; }
+            .recipe-img img { box-shadow: 10px 10px 0 var(--cokelat-muda); }
+            .recipe-text h2 { font-size: 2rem; }
+            header { margin-top: 80px; }
+            .reservation-info, .reservation-form { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR (SHORTCUT) -->
     <nav class="navbar">
         <a href="#beranda" class="nav-logo">Warung Timlo</a>
         <div class="nav-links">
             <a href="#beranda">Beranda</a>
             <a href="#menu">Menu</a>
-            <a href="#event">Acara</a>
             <a href="#cerita">Cerita</a>
+            <a href="#keunggulan">Keunggulan</a>
             <a href="#reservasi">Reservasi</a>
+            <a href="#ulasan">Ulasan</a>
             <a href="#kontak">Kontak</a>
         </div>
     </nav>
@@ -335,173 +504,247 @@
     <!-- MENU CAROUSEL -->
     <section class="container" id="menu">
         <div class="reveal">
-            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; text-align: center; margin-bottom: 40px;">Menu Favorit</h2>
+            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; text-align: center; margin-bottom: 10px;">Menu Favorit</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Pilihan terbaik untuk kehangatan hari Anda</p>
         </div>
         
-        <div class="menu-carousel" id="carousel">
-            <!-- Item 1: Timlo -->
+        <div class="menu-carousel reveal" id="carousel">
+            <!-- Item 1 -->
             <div class="menu-card">
                 <img src="18543759-timlo-solo-telur-pindang-l.webp" alt="Timlo">
                 <div class="menu-body">
                     <h3>Timlo Komplit</h3>
                     <span class="price">Rp 25.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
+                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Timlo%20Komplit" class="btn btn-order" target="_blank">Pesan Sekarang</a>
                 </div>
             </div>
-            <!-- Item 2: Bubur Ayam (TAMBAHAN BARU) -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=500&q=80" alt="Bubur Ayam">
-                <div class="menu-body">
-                    <h3>Bubur Ayam Solo</h3>
-                    <span class="price">Rp 15.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
-                </div>
-            </div>
-            <!-- Item 3: Kopi (TAMBAHAN BARU) -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1544787210-2827448b362c?auto=format&fit=crop&w=500&q=80" alt="Kopi">
-                <div class="menu-body">
-                    <h3>Kopi Tubruk Asli</h3>
-                    <span class="price">Rp 10.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
-                </div>
-            </div>
-            <!-- Item 4: Es Podeng -->
+            <!-- Item 2 -->
             <div class="menu-card">
                 <img src="Es-Podeng.webp" alt="Es Podeng">
                 <div class="menu-body">
                     <h3>Es Podeng Tradisional</h3>
                     <span class="price">Rp 12.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
+                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Podeng" class="btn btn-order" target="_blank">Pesan Sekarang</a>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Es Teh">
+                <div class="menu-body">
+                    <h3>Es Teh Manis</h3>
+                    <span class="price">Rp 5.000</span>
+                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Teh%20Manis" class="btn btn-order" target="_blank">Pesan Sekarang</a>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Es Jeruk">
+                <div class="menu-body">
+                    <h3>Es Jeruk Peras</h3>
+                    <span class="price">Rp 7.000</span>
+                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Jeruk%20Peras" class="btn btn-order" target="_blank">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
-        <!-- PESAN INSTRUKSI SUDAH DIHAPUS DISINI -->
-    </section>
-
-    <!-- SPECIAL EVENT SECTION (TAMBAHAN BARU - GAYA MANG ENGKING) -->
-    <section class="event-section" id="event">
-        <div class="container">
-            <div class="reveal" style="text-align: center; margin-bottom: 40px;">
-                <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Acara & Spesial</h2>
-                <p>Rayakan momen berharga Anda di Warung Timlo Solo</p>
-            </div>
-            <div class="event-grid">
-                <div class="event-card reveal">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Wedding">
-                    <div class="event-overlay">
-                        <h3>Pernikahan & Lamaran</h3>
-                        <p>Suasana tradisional yang syahdu dan hangat.</p>
-                    </div>
-                </div>
-                <div class="event-card reveal">
-                    <img src="https://images.unsplash.com/photo-1505373633562-b13da4628233?auto=format&fit=crop&w=600&q=80" alt="Meeting">
-                    <div class="event-overlay">
-                        <h3>Pertemuan Bisnis</h3>
-                        <p>Ruang nyaman untuk diskusi dan kesepakatan penting.</p>
-                    </div>
-                </div>
-                <div class="event-card reveal">
-                    <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&w=600&q=80" alt="Family">
-                    <div class="event-overlay">
-                        <h3>Kumpul Keluarga</h3>
-                        <p>Makan bersama dengan cita rasa warisan leluhur.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <p style="text-align: center; font-size: 0.8rem; margin-top: 15px; color: #888;">(Klik & geser menggunakan mouse untuk PC, swipe untuk HP)</p>
     </section>
 
     <!-- RAHASIA RESEP -->
     <section style="background-color: #fff;" id="cerita">
         <div class="container recipe-section">
             <div class="recipe-img reveal">
-                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Rempah">
+                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rempah Tradisional">
             </div>
             <div class="recipe-text reveal">
                 <h2>Warisan Rasa yang Terjaga</h2>
-                <p>Kuah Timlo kami bukanlah sekadar sup biasa. Setiap tetesnya adalah hasil proses memasak perlahan dengan paduan rempah rahasia asli Solo.</p>
+                <p>Kuah Timlo kami bukanlah sekadar sup biasa. Setiap tetesnya adalah hasil proses memasak perlahan dengan paduan rempah rahasia asli Solo yang diwariskan turun-temurun.</p>
+                <br>
+                <p>Tanpa mengubah resep asli sejak puluhan tahun lalu, kami memastikan kehangatan jahe, aroma bawang, dan sari kaldu ayam kampung menyatu sempurna untuk menyegarkan tubuh dan jiwa Anda.</p>
             </div>
         </div>
     </section>
 
-    <!-- RESERVASI -->
+    <!-- KELEBIHAN -->
+    <section class="container" id="keunggulan">
+        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 40px;" class="reveal">Keunggulan Kami</h2>
+        <div class="features">
+            <div class="feature-item reveal">
+                <i class="fas fa-check-circle"></i>
+                <p>Buka 24 Jam Nonstop</p>
+            </div>
+            <div class="feature-item reveal">
+                <i class="fas fa-check-circle"></i>
+                <p>100% Halal & Bahan Segar</p>
+            </div>
+            <div class="feature-item reveal">
+                <i class="fas fa-check-circle"></i>
+                <p>Resep Asli Warisan Keluarga</p>
+            </div>
+            <div class="feature-item reveal">
+                <i class="fas fa-check-circle"></i>
+                <p>Porsi Kenyang, Harga Sahabat</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESERVASI TEMPAT -->
     <section class="container" id="reservasi">
         <div class="reveal">
-            <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 40px;">Reservasi Tempat</h2>
+            <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 10px;">Reservasi Tempat</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Amankan meja untuk momen makan bersama Anda.</p>
         </div>
+
         <div class="reservation-wrapper reveal">
+            <!-- Info Kiri -->
             <div class="reservation-info">
-                <h3>Booking Meja</h3>
-                <p>Silakan isi formulir di samping, kami akan menyiapkan meja terbaik untuk Anda.</p>
+                <h3 style="font-family: 'Playfair Display'; font-size: 1.8rem; margin-bottom: 15px;">Makan Bersama Lebih Nikmat</h3>
+                <p style="margin-bottom: 20px; font-weight: 300;">Rayakan momen bersama keluarga atau kerabat dengan sajian hangat dari Warung Timlo Solo. Silakan isi formulir, admin kami akan segera menyiapkan meja untuk Anda.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #81c784; margin-right: 10px;"></i> Tanpa biaya reservasi tambahan</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #81c784; margin-right: 10px;"></i> Bisa request lokasi duduk (luar/dalam)</li>
+                    <li><i class="fas fa-check-circle" style="color: #81c784; margin-right: 10px;"></i> Meja disiapkan 15 menit sebelum kedatangan</li>
+                </ul>
             </div>
+            
+            <!-- Form Kanan -->
             <div class="reservation-form">
-                <form onsubmit="kirimReservasi(event)">
-                    <input type="text" id="resNama" class="form-control" placeholder="Nama Anda" required>
-                    <input type="date" id="resTanggal" class="form-control" required>
-                    <select id="resJumlah" class="form-control" required>
-                        <option value="">Jumlah Orang</option>
-                        <option value="1-5">1-5 Orang</option>
-                        <option value="6-10">6-10 Orang</option>
-                        <option value=">10">Lebih dari 10 Orang</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Reservasi via WA</button>
+                <form id="formReservasi" onsubmit="kirimReservasi(event)">
+                    <div class="form-group">
+                        <label for="resNama">Nama Pemesan</label>
+                        <input type="text" id="resNama" class="form-control" required placeholder="Contoh: Bapak Budi">
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div class="form-group" style="flex: 1; min-width: 130px;">
+                            <label for="resTanggal">Tanggal Kedatangan</label>
+                            <input type="date" id="resTanggal" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="flex: 1; min-width: 130px;">
+                            <label for="resJam">Jam Kedatangan</label>
+                            <input type="time" id="resJam" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resJumlah">Jumlah Orang</label>
+                        <select id="resJumlah" class="form-control" required>
+                            <option value="" disabled selected>-- Pilih jumlah rombongan --</option>
+                            <option value="1-2 Orang">1 - 2 Orang</option>
+                            <option value="3-5 Orang">3 - 5 Orang</option>
+                            <option value="6-10 Orang">6 - 10 Orang</option>
+                            <option value="Lebih dari 10 Orang">Lebih dari 10 Orang</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resCatatan">Catatan Tambahan (Opsional)</label>
+                        <textarea id="resCatatan" class="form-control" rows="3" placeholder="Contoh: Minta area yang teduh atau ada anak kecil..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; margin-top: 10px;">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Kirim Reservasi via WA
+                    </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="container" id="ulasan">
+        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 40px;" class="reveal">Kata Mereka</h2>
+        <div class="review-grid">
+            <div class="review-card reveal">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Timlo paling enak di kota ini! Kuahnya bening tapi gurihnya nendang banget. Sosis solonya juga sangat otentik."</p>
+                <span class="reviewer">- Budi Santoso</span>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Pelayanan cepat dan ramah. Tempatnya bersih meski sederhana. Pas banget buat sarapan atau makan malam."</p>
+                <span class="reviewer">- Siti Aminah</span>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="kontak">
-        <div class="container" style="text-align: center;">
-            <p>&copy; 2026 Warung Timlo Solo. All Rights Reserved.</p>
+        <div class="container">
+            <div class="footer-grid reveal">
+                <!-- Kolom 1 -->
+                <div class="footer-col">
+                    <h4>Kontak Kami</h4>
+                    <div class="contact-list">
+                        <p><i class="fas fa-phone"></i> +62 811-1234-5678</p>
+                        <p><i class="fas fa-fax"></i> (0271) 654321</p>
+                        <p><i class="fas fa-envelope"></i> halo@timlosoloasli.com</p>
+                        <p><i class="fas fa-clock"></i> 08.00 AM - 11.00 PM</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Slamet Riyadi No. 123, Solo, Jawa Tengah</p>
+                    </div>
+                </div>
+                <!-- Kolom 2: Tautan Media Sosial Mengarah ke Halaman Utama -->
+                <div class="footer-col">
+                    <h4>Media Sosial</h4>
+                    <div class="social-icons">
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Kolom 3 -->
+                <div class="footer-col">
+                    <h4>Cari Kami</h4>
+                    <div class="map-box">
+                        <a href="https://maps.google.com" target="_blank" class="map-btn">
+                            <i class="fas fa-external-link-alt"></i> Buka di Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026. All Right Reserved. Made by Warung Timlo Solo</p>
+            </div>
         </div>
     </footer>
 
     <!-- JAVASCRIPT -->
     <script>
-        // 1. Reveal Scroll
+        // 1. Efek Reveal Scroll (Fade-In Floating Up)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
+                var elementVisible = 100; 
+                if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
-        window.addEventListener("scroll", reveal);
 
-        // 2. Menu Autoscroll & Manual Drag
+        window.addEventListener("scroll", reveal);
+        document.addEventListener("DOMContentLoaded", reveal);
+
+        // 2. JavaScript Tambahan: Fitur DRAG TO SCROLL untuk PC/Laptop
         const slider = document.getElementById('carousel');
         let isDown = false;
         let startX;
         let scrollLeft;
-        let autoScrollActive = true;
 
-        // Fungsi Autoscroll
-        let autoScroll = setInterval(() => {
-            if (autoScrollActive && !isDown) {
-                slider.scrollLeft += 1;
-                if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
-                    slider.scrollLeft = 0;
-                }
-            }
-        }, 30);
-
-        // Berhenti autoscroll saat mouse masuk (Hover)
-        slider.addEventListener('mouseenter', () => autoScrollActive = false);
-        slider.addEventListener('mouseleave', () => autoScrollActive = true);
-
-        // Fitur Manual Drag
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
         });
-        slider.addEventListener('mouseleave', () => { isDown = false; });
-        slider.addEventListener('mouseup', () => { isDown = false; });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
@@ -510,14 +753,32 @@
             slider.scrollLeft = scrollLeft - walk;
         });
 
-        // 3. Reservasi WA
+        // 3. JavaScript Fitur RESERVASI KE WHATSAPP
         function kirimReservasi(e) {
-            e.preventDefault();
+            e.preventDefault(); 
+
             const nama = document.getElementById('resNama').value;
-            const tgl = document.getElementById('resTanggal').value;
-            const jml = document.getElementById('resJumlah').value;
-            const pesan = `Halo Warung Timlo, saya ingin reservasi untuk tanggal ${tgl} berjumlah ${jml} orang atas nama ${nama}.`;
-            window.open(`https://wa.me/628112345678?text=${encodeURIComponent(pesan)}`, '_blank');
+            const tanggal = document.getElementById('resTanggal').value;
+            const jam = document.getElementById('resJam').value;
+            const jumlah = document.getElementById('resJumlah').value;
+            const catatan = document.getElementById('resCatatan').value;
+
+            let pesanWA = `Halo Warung Timlo Solo, saya ingin melakukan *Reservasi Tempat* dengan detail berikut:%0A%0A`;
+            pesanWA += `*Nama:* ${nama}%0A`;
+            pesanWA += `*Tanggal:* ${tanggal}%0A`;
+            pesanWA += `*Jam:* ${jam}%0A`;
+            pesanWA += `*Jumlah Tamu:* ${jumlah}%0A`;
+            
+            if(catatan) {
+                pesanWA += `*Catatan Tambahan:* ${catatan}%0A`;
+            }
+            
+            pesanWA += `%0AMohon infokan ketersediaan mejanya ya. Terima kasih!`;
+
+            const noKlien = "628112345678";
+            const urlWA = `https://wa.me/${noKlien}?text=${pesanWA}`;
+            
+            window.open(urlWA, '_blank');
         }
     </script>
 </body>
