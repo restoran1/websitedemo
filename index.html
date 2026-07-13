@@ -1,3 +1,15 @@
+Siap! Saya telah memperbarui kodemu persis seperti yang kamu minta, tanpa menambahkan hal-hal lain di luar instruksimu.
+
+Berikut adalah penyesuaian yang dilakukan pada kode di bawah ini:
+
+1. **Tombol Pesan Dihilangkan:** Tombol "Pesan Sekarang" di bawah semua menu sudah dihapus.
+2. **Menu Autoscroll & Drag/Swipe:** Fitur *autoscroll* ditambahkan menggunakan JavaScript murni. Menu akan bergeser otomatis, namun akan berhenti sementara (jeda) ketika kamu menggesernya secara manual menggunakan *mouse* atau *swipe* di HP.
+3. **Menu Baru Ditambahkan:** "Bubur Ayam" (`5f21800132f87.jpg`) dan "Kopi Hitam" (`images (1).jpg`) sudah dimasukkan ke dalam daftar menu. *(Catatan: Saya menduplikat daftar menu di dalam kode HTML agar efek scroll otomatisnya terasa lebih panjang dan mulus).*
+4. **Section Special Event:** Ditambahkan tepat di bawah *Hero Section (Beranda)* dengan desain tata letak (pita merah di kiri foto dan teks di kanan) yang meniru persis referensi *Mang Engking* menggunakan gambarmu (`image_8f1f22.jpg`).
+
+Silakan langsung timpa (*replace*) seluruh kode lamamu dengan kode ini:
+
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -153,6 +165,77 @@
             transform: scale(1.05);
         }
 
+        /* --- SPECIAL EVENT (MANG ENGKING STYLE) --- */
+        .special-event-wrapper {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .event-title-top {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .event-title-top h4 {
+            color: #d32f2f;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: -5px;
+        }
+        .event-title-top h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            color: #333;
+        }
+        .event-content-box {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            max-width: 1000px;
+            margin: auto;
+            width: 90%;
+            gap: 50px;
+        }
+        .event-image-box {
+            flex: 1 1 450px;
+            display: flex;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+        .event-date-bar {
+            background-color: #d32f2f;
+            color: white;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        .event-image-box img {
+            width: 100%;
+            object-fit: cover;
+        }
+        .event-text-box {
+            flex: 1 1 400px;
+        }
+        .event-text-box h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: #333;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .event-text-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
         /* --- MENU CAROUSEL --- */
         .menu-carousel {
             display: flex;
@@ -160,7 +243,7 @@
             gap: 20px;
             padding: 20px 0;
             scrollbar-width: none;
-            scroll-snap-type: x mandatory;
+            /* Dihilangkan fitur scroll-snap agar JS Autoscroll berjalan mulus */
             cursor: grab;
             user-select: none;
         }
@@ -177,7 +260,6 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            scroll-snap-align: center;
             border: 1px solid #eee;
             pointer-events: none;
         }
@@ -198,19 +280,7 @@
         }
 
         .menu-body h3 { margin-bottom: 5px; font-size: 1.1rem; }
-        .price { color: var(--hijau-segar); font-weight: 700; display: block; margin-bottom: 15px; }
-        
-        .btn-order {
-            font-size: 0.8rem;
-            border: 1px solid var(--cokelat-kayu);
-            color: var(--cokelat-kayu);
-            background: transparent;
-        }
-
-        .btn-order:hover {
-            background: var(--cokelat-kayu);
-            color: white;
-        }
+        .price { color: var(--hijau-segar); font-weight: 700; display: block; margin-bottom: 5px; }
 
         /* --- RAHASIA RESEP SECTION --- */
         .recipe-section {
@@ -468,6 +538,8 @@
             .recipe-text h2 { font-size: 2rem; }
             header { margin-top: 80px; }
             .reservation-info, .reservation-form { padding: 30px; }
+            .event-content-box { flex-direction: column; text-align: center; }
+            .event-date-bar { padding: 15px 10px; }
         }
     </style>
 </head>
@@ -497,12 +569,30 @@
         <div class="hero-content">
             <h1>Selamat Datang di Timlo Solo Asli</h1>
             <p>Cita Rasa Otentik, Hangat, & Menyegarkan</p>
-            <a href="#menu" class="btn btn-primary">Lihat Menu & Pesan</a>
+            <a href="#menu" class="btn btn-primary">Lihat Menu</a>
         </div>
     </header>
 
-    <!-- MENU CAROUSEL -->
-    <section class="container" id="menu">
+    <!-- SPECIAL EVENT (MANG ENGKING STYLE) -->
+    <section class="special-event-wrapper reveal">
+        <div class="event-title-top">
+            <h4>Special</h4>
+            <h2>EVENT</h2>
+        </div>
+        <div class="event-content-box">
+            <div class="event-image-box">
+                <div class="event-date-bar">24 SEP 2018</div>
+                <img src="image_8f1f22.jpg" alt="Wedding Party Event">
+            </div>
+            <div class="event-text-box">
+                <h3>WEDDING PARTY</h3>
+                <p>Rayakan Moment Kebahagiaan Anda Di Warung Timlo Solo, Dengan Suasana Pedesaan Di Tengah Kota.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU CAROUSEL (AUTOSCROLL) -->
+    <section class="container" id="menu" style="padding-top: 40px;">
         <div class="reveal">
             <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; text-align: center; margin-bottom: 10px;">Menu Favorit</h2>
             <p style="text-align: center; margin-bottom: 40px;">Pilihan terbaik untuk kehangatan hari Anda</p>
@@ -515,7 +605,6 @@
                 <div class="menu-body">
                     <h3>Timlo Komplit</h3>
                     <span class="price">Rp 25.000</span>
-                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Timlo%20Komplit" class="btn btn-order" target="_blank">Pesan Sekarang</a>
                 </div>
             </div>
             <!-- Item 2 -->
@@ -524,7 +613,6 @@
                 <div class="menu-body">
                     <h3>Es Podeng Tradisional</h3>
                     <span class="price">Rp 12.000</span>
-                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Podeng" class="btn btn-order" target="_blank">Pesan Sekarang</a>
                 </div>
             </div>
             <!-- Item 3 -->
@@ -533,7 +621,6 @@
                 <div class="menu-body">
                     <h3>Es Teh Manis</h3>
                     <span class="price">Rp 5.000</span>
-                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Teh%20Manis" class="btn btn-order" target="_blank">Pesan Sekarang</a>
                 </div>
             </div>
             <!-- Item 4 -->
@@ -542,11 +629,70 @@
                 <div class="menu-body">
                     <h3>Es Jeruk Peras</h3>
                     <span class="price">Rp 7.000</span>
-                    <a href="https://wa.me/628112345678?text=Halo%20saya%20mau%20pesan%20Es%20Jeruk%20Peras" class="btn btn-order" target="_blank">Pesan Sekarang</a>
+                </div>
+            </div>
+            <!-- Item 5 (Baru: Bubur Ayam) -->
+            <div class="menu-card">
+                <img src="5f21800132f87.jpg" alt="Bubur Ayam">
+                <div class="menu-body">
+                    <h3>Bubur Ayam</h3>
+                    <span class="price">Rp 15.000</span>
+                </div>
+            </div>
+            <!-- Item 6 (Baru: Kopi Hitam) -->
+            <div class="menu-card">
+                <img src="images (1).jpg" alt="Kopi Hitam">
+                <div class="menu-body">
+                    <h3>Kopi Hitam</h3>
+                    <span class="price">Rp 8.000</span>
+                </div>
+            </div>
+
+            <!-- DUPLIKAT ITEM UNTUK EFEK AUTOSCROLL MULUS -->
+            <div class="menu-card">
+                <img src="18543759-timlo-solo-telur-pindang-l.webp" alt="Timlo">
+                <div class="menu-body">
+                    <h3>Timlo Komplit</h3>
+                    <span class="price">Rp 25.000</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="Es-Podeng.webp" alt="Es Podeng">
+                <div class="menu-body">
+                    <h3>Es Podeng Tradisional</h3>
+                    <span class="price">Rp 12.000</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Es Teh">
+                <div class="menu-body">
+                    <h3>Es Teh Manis</h3>
+                    <span class="price">Rp 5.000</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Es Jeruk">
+                <div class="menu-body">
+                    <h3>Es Jeruk Peras</h3>
+                    <span class="price">Rp 7.000</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="5f21800132f87.jpg" alt="Bubur Ayam">
+                <div class="menu-body">
+                    <h3>Bubur Ayam</h3>
+                    <span class="price">Rp 15.000</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="images (1).jpg" alt="Kopi Hitam">
+                <div class="menu-body">
+                    <h3>Kopi Hitam</h3>
+                    <span class="price">Rp 8.000</span>
                 </div>
             </div>
         </div>
-        <p style="text-align: center; font-size: 0.8rem; margin-top: 15px; color: #888;">(Klik & geser menggunakan mouse untuk PC, swipe untuk HP)</p>
+        <p style="text-align: center; font-size: 0.8rem; margin-top: 15px; color: #888;">(Menu akan bergeser otomatis. Anda juga dapat menggeser manual)</p>
     </section>
 
     <!-- RAHASIA RESEP -->
@@ -725,30 +871,75 @@
         window.addEventListener("scroll", reveal);
         document.addEventListener("DOMContentLoaded", reveal);
 
-        // 2. JavaScript Tambahan: Fitur DRAG TO SCROLL untuk PC/Laptop
+        // 2. JavaScript Tambahan: Fitur AUTOSCROLL & DRAG TO SCROLL
         const slider = document.getElementById('carousel');
         let isDown = false;
         let startX;
         let scrollLeft;
+        let autoScrollTimer;
 
+        // Fungsi Autoscroll
+        function startAutoScroll() {
+            autoScrollTimer = setInterval(() => {
+                if (!isDown) {
+                    slider.scrollLeft += 1;
+                    // Reset scroll ketika mencapai ujung agar terlihat melingkar
+                    if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth - 1)) {
+                        slider.scrollLeft = 0;
+                    }
+                }
+            }, 30); // Angka 30 = Kecepatan Scroll (Makin kecil makin cepat)
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollTimer);
+        }
+
+        // Mulai autoscroll otomatis
+        startAutoScroll();
+
+        // Fitur klik & geser (Mouse/PC)
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
+            stopAutoScroll(); // Jeda saat dipegang
         });
 
         slider.addEventListener('mouseleave', () => {
             isDown = false;
+            startAutoScroll(); // Lanjut saat dilepas
         });
 
         slider.addEventListener('mouseup', () => {
             isDown = false;
+            startAutoScroll(); // Lanjut saat dilepas
         });
 
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Fitur Swipe (HP / Touchscreen)
+        slider.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            stopAutoScroll();
+        });
+        
+        slider.addEventListener('touchend', () => {
+            isDown = false;
+            startAutoScroll();
+        });
+
+        slider.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - slider.offsetLeft;
             const walk = (x - startX) * 2;
             slider.scrollLeft = scrollLeft - walk;
         });
@@ -783,3 +974,5 @@
     </script>
 </body>
 </html>
+
+```
