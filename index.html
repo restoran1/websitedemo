@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- ROOT & RESET (ORIGINAL STYLE) --- */
+        /* --- ROOT & RESET (TETAP SAMA SEPERTI KODE AWAL ANDA) --- */
         :root {
             --putih-gading: #FAF9F6;
             --cokelat-kayu: #5D4037;
@@ -23,20 +23,31 @@
             --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-padding-top: 80px; scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: 80px; 
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--putih-gading);
             color: var(--cokelat-kayu);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             background-color: var(--putih-gading);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
@@ -44,108 +55,280 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
+            transition: var(--transition);
         }
+
         .nav-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem; font-weight: 700;
-            color: var(--cokelat-kayu); text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cokelat-kayu);
+            text-decoration: none;
         }
-        .nav-links { display: flex; gap: 25px; }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
         .nav-links a {
-            text-decoration: none; color: var(--cokelat-kayu);
-            font-weight: 600; font-size: 0.95rem; transition: 0.3s;
+            text-decoration: none;
+            color: var(--cokelat-kayu);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
-        .nav-links a:hover { color: var(--hijau-segar); }
+
+        .nav-links a:hover {
+            color: var(--hijau-segar);
+        }
 
         /* --- ANIMASI --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
 
-        /* --- HERO --- */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* --- HERO SECTION --- */
         header {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; margin-top: 60px; 
+                        url('deeh3przwa.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px; 
         }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); }
 
-        /* --- MENU CAROUSEL (ORIGINAL STYLE) --- */
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 80px 0; }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary {
+            background-color: var(--hijau-segar);
+            color: white;
+        }
+
+        /* --- MENU CAROUSEL --- */
         .menu-carousel {
-            display: flex; overflow-x: auto; gap: 20px; padding: 20px 0;
-            scrollbar-width: none; cursor: grab;
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+            cursor: grab;
+            user-select: none;
+            scroll-behavior: smooth;
         }
-        .menu-carousel::-webkit-scrollbar { display: none; }
-        .menu-card {
-            min-width: 280px; background: white; border-radius: 15px;
-            overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: 1px solid #eee; flex-shrink: 0;
-        }
-        .menu-card img { width: 100%; height: 200px; object-fit: cover; }
-        .menu-body { padding: 20px; text-align: center; }
-        .price { color: var(--hijau-segar); font-weight: 700; display: block; margin-bottom: 15px; }
-        .btn { display: inline-block; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-order { font-size: 0.8rem; border: 1px solid var(--cokelat-kayu); color: var(--cokelat-kayu); background: transparent; }
-        .btn-order:hover { background: var(--cokelat-kayu); color: white; }
-        .btn-primary { background-color: var(--hijau-segar); color: white; }
 
-        /* --- SPECIAL EVENT SECTION (NEW) --- */
-        .special-events { background: #fff; padding: 80px 0; }
-        .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .event-card {
-            position: relative; height: 350px; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .menu-carousel::-webkit-scrollbar { display: none; }
+
+        .menu-card {
+            min-width: 280px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            scroll-snap-align: center;
+            border: 1px solid #eee;
+            flex-shrink: 0;
         }
-        .event-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-body h3 { margin-bottom: 5px; font-size: 1.1rem; }
+        .price { color: var(--hijau-segar); font-weight: 700; display: block; margin-bottom: 15px; }
+        
+        .btn-order {
+            font-size: 0.8rem;
+            border: 1px solid var(--cokelat-kayu);
+            color: var(--cokelat-kayu);
+            background: transparent;
+        }
+
+        .btn-order:hover {
+            background: var(--cokelat-kayu);
+            color: white;
+        }
+
+        /* --- SPECIAL EVENT SECTION (MANG ENGKING STYLE) --- */
+        .event-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .event-card {
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .event-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
         .event-overlay {
-            position: absolute; inset: 0; 
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 30px; color: white;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
         }
         .event-card:hover img { transform: scale(1.1); }
 
-        /* --- RESERVASI (ORIGINAL STYLE) --- */
-        .reservation-wrapper { display: flex; flex-wrap: wrap; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .reservation-info { flex: 1 1 300px; background: var(--cokelat-kayu); color: white; padding: 50px; }
+        /* --- RAHASIA RESEP --- */
+        .recipe-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .recipe-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0 var(--cokelat-muda);
+        }
+
+        .recipe-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESERVASI --- */
+        .reservation-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        .reservation-info {
+            flex: 1 1 300px;
+            background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(93, 64, 55, 0.85)), 
+                        url('warung-tuman.width-800.format-webp.webp');
+            background-size: cover;
+            padding: 50px;
+            color: white;
+        }
+
         .reservation-form { flex: 1 1 300px; padding: 50px; }
-        .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; }
 
         /* --- FOOTER & WA --- */
-        footer { background: var(--gelap-footer); color: white; padding: 80px 0 20px; }
-        .wa-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 9999; text-decoration: none; }
-
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; padding: 10px; }
-            .nav-links { gap: 10px; font-size: 0.8rem; }
-            header { margin-top: 90px; }
+        footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 80px 0 20px 0;
+        }
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            z-index: 9999;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="#beranda" class="nav-logo">Warung Timlo</a>
         <div class="nav-links">
             <a href="#beranda">Beranda</a>
             <a href="#menu">Menu</a>
             <a href="#event">Acara</a>
+            <a href="#cerita">Cerita</a>
             <a href="#reservasi">Reservasi</a>
             <a href="#kontak">Kontak</a>
         </div>
     </nav>
 
-    <a href="https://wa.me/628112345678" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/628112345678" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
+    <!-- HERO SECTION -->
     <header id="beranda">
         <div class="hero-content">
-            <h1>Timlo Solo Asli</h1>
+            <h1>Selamat Datang di Timlo Solo Asli</h1>
             <p>Cita Rasa Otentik, Hangat, & Menyegarkan</p>
-            <br>
-            <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+            <a href="#menu" class="btn btn-primary">Lihat Menu & Pesan</a>
         </div>
     </header>
 
@@ -156,160 +339,185 @@
         </div>
         
         <div class="menu-carousel" id="carousel">
-            <!-- Item 1 -->
+            <!-- Item 1: Timlo -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=500&q=80" alt="Timlo">
+                <img src="18543759-timlo-solo-telur-pindang-l.webp" alt="Timlo">
                 <div class="menu-body">
                     <h3>Timlo Komplit</h3>
                     <span class="price">Rp 25.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan</a>
+                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
                 </div>
             </div>
-            <!-- Item 2 (NEW: Bubur) -->
+            <!-- Item 2: Bubur Ayam (TAMBAHAN BARU) -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=500&q=80" alt="Bubur">
+                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=500&q=80" alt="Bubur Ayam">
                 <div class="menu-body">
                     <h3>Bubur Ayam Solo</h3>
-                    <span class="price">Rp 18.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan</a>
+                    <span class="price">Rp 15.000</span>
+                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
                 </div>
             </div>
-            <!-- Item 3 (NEW: Kopi) -->
+            <!-- Item 3: Kopi (TAMBAHAN BARU) -->
             <div class="menu-card">
                 <img src="https://images.unsplash.com/photo-1544787210-2827448b362c?auto=format&fit=crop&w=500&q=80" alt="Kopi">
                 <div class="menu-body">
                     <h3>Kopi Tubruk Asli</h3>
                     <span class="price">Rp 10.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan</a>
+                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
                 </div>
             </div>
-            <!-- Item 4 -->
+            <!-- Item 4: Es Podeng -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=500&q=80" alt="Es Podeng">
+                <img src="Es-Podeng.webp" alt="Es Podeng">
                 <div class="menu-body">
-                    <h3>Es Podeng</h3>
+                    <h3>Es Podeng Tradisional</h3>
                     <span class="price">Rp 12.000</span>
-                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan</a>
+                    <a href="https://wa.me/628112345678" class="btn btn-order">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
+        <!-- PESAN INSTRUKSI SUDAH DIHAPUS DISINI -->
     </section>
 
-    <!-- SPECIAL EVENT SECTION (Style Mang Engking) -->
-    <section class="special-events" id="event">
+    <!-- SPECIAL EVENT SECTION (TAMBAHAN BARU - GAYA MANG ENGKING) -->
+    <section class="event-section" id="event">
         <div class="container">
-            <div class="reveal" style="text-align: center;">
-                <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Momen Berkesan</h2>
-                <p>Rayakan kebahagiaan Anda bersama kami</p>
+            <div class="reveal" style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Acara & Spesial</h2>
+                <p>Rayakan momen berharga Anda di Warung Timlo Solo</p>
             </div>
             <div class="event-grid">
                 <div class="event-card reveal">
                     <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Wedding">
                     <div class="event-overlay">
-                        <h3>Pesta Pernikahan</h3>
-                        <p>Nuansa Jawa klasik yang elegan.</p>
+                        <h3>Pernikahan & Lamaran</h3>
+                        <p>Suasana tradisional yang syahdu dan hangat.</p>
                     </div>
                 </div>
                 <div class="event-card reveal">
                     <img src="https://images.unsplash.com/photo-1505373633562-b13da4628233?auto=format&fit=crop&w=600&q=80" alt="Meeting">
                     <div class="event-overlay">
-                        <h3>Rapat & Gathering</h3>
-                        <p>Fasilitas lengkap dan nyaman.</p>
+                        <h3>Pertemuan Bisnis</h3>
+                        <p>Ruang nyaman untuk diskusi dan kesepakatan penting.</p>
                     </div>
                 </div>
                 <div class="event-card reveal">
-                    <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&w=600&q=80" alt="Birthday">
+                    <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&w=600&q=80" alt="Family">
                     <div class="event-overlay">
-                        <h3>Acara Keluarga</h3>
-                        <p>Kehangatan dalam setiap hidangan.</p>
+                        <h3>Kumpul Keluarga</h3>
+                        <p>Makan bersama dengan cita rasa warisan leluhur.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RAHASIA RESEP -->
+    <section style="background-color: #fff;" id="cerita">
+        <div class="container recipe-section">
+            <div class="recipe-img reveal">
+                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Rempah">
+            </div>
+            <div class="recipe-text reveal">
+                <h2>Warisan Rasa yang Terjaga</h2>
+                <p>Kuah Timlo kami bukanlah sekadar sup biasa. Setiap tetesnya adalah hasil proses memasak perlahan dengan paduan rempah rahasia asli Solo.</p>
             </div>
         </div>
     </section>
 
     <!-- RESERVASI -->
     <section class="container" id="reservasi">
+        <div class="reveal">
+            <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 40px;">Reservasi Tempat</h2>
+        </div>
         <div class="reservation-wrapper reveal">
             <div class="reservation-info">
-                <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Reservasi</h2>
-                <p>Silakan isi data untuk mengamankan meja Anda.</p>
-                <ul style="margin-top: 20px; list-style: none;">
-                    <li><i class="fas fa-check"></i> Respon Cepat WA</li>
-                    <li><i class="fas fa-check"></i> Area Parkir Luas</li>
-                </ul>
+                <h3>Booking Meja</h3>
+                <p>Silakan isi formulir di samping, kami akan menyiapkan meja terbaik untuk Anda.</p>
             </div>
             <div class="reservation-form">
-                <form onsubmit="kirimWA(event)">
-                    <input type="text" id="nama" class="form-control" placeholder="Nama Anda" required>
-                    <input type="date" id="tgl" class="form-control" required>
-                    <select id="jml" class="form-control" required>
+                <form onsubmit="kirimReservasi(event)">
+                    <input type="text" id="resNama" class="form-control" placeholder="Nama Anda" required>
+                    <input type="date" id="resTanggal" class="form-control" required>
+                    <select id="resJumlah" class="form-control" required>
                         <option value="">Jumlah Orang</option>
-                        <option value="2-4">2-4 Orang</option>
-                        <option value="5-10">5-10 Orang</option>
-                        <option value="Rombongan">Rombongan (>10)</option>
+                        <option value="1-5">1-5 Orang</option>
+                        <option value="6-10">6-10 Orang</option>
+                        <option value=">10">Lebih dari 10 Orang</option>
                     </select>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Booking Sekarang</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Reservasi via WA</button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer id="kontak">
         <div class="container" style="text-align: center;">
-            <h3 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Warung Timlo Solo</h3>
-            <p>Jl. Slamet Riyadi No. 123, Solo | 0811-2345-678</p>
-            <p style="margin-top: 40px; opacity: 0.5; font-size: 0.8rem;">&copy; 2026. All Rights Reserved.</p>
+            <p>&copy; 2026 Warung Timlo Solo. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // 1. Reveal on Scroll
-        window.addEventListener("scroll", () => {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        });
+        // 1. Reveal Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
 
-        // 2. Autoscroll Menu & Manual Drag
+        // 2. Menu Autoscroll & Manual Drag
         const slider = document.getElementById('carousel');
         let isDown = false;
-        let startX, scrollLeft;
-        let isHovered = false;
+        let startX;
+        let scrollLeft;
+        let autoScrollActive = true;
 
-        // AutoScroll Logic
-        setInterval(() => {
-            if (!isDown && !isHovered) {
+        // Fungsi Autoscroll
+        let autoScroll = setInterval(() => {
+            if (autoScrollActive && !isDown) {
                 slider.scrollLeft += 1;
-                if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+                if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
                     slider.scrollLeft = 0;
                 }
             }
         }, 30);
 
-        slider.addEventListener('mouseenter', () => isHovered = true);
-        slider.addEventListener('mouseleave', () => isHovered = false);
+        // Berhenti autoscroll saat mouse masuk (Hover)
+        slider.addEventListener('mouseenter', () => autoScrollActive = false);
+        slider.addEventListener('mouseleave', () => autoScrollActive = true);
 
-        // Drag Logic
+        // Fitur Manual Drag
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
         });
-        slider.addEventListener('mouseleave', () => isDown = false);
-        slider.addEventListener('mouseup', () => isDown = false);
+        slider.addEventListener('mouseleave', () => { isDown = false; });
+        slider.addEventListener('mouseup', () => { isDown = false; });
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            slider.scrollLeft = scrollLeft - (x - startX) * 2;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
         });
 
-        // 3. WA Function
-        function kirimWA(e) {
+        // 3. Reservasi WA
+        function kirimReservasi(e) {
             e.preventDefault();
-            const msg = `Halo, saya ${document.getElementById('nama').value} ingin reservasi tgl ${document.getElementById('tgl').value} untuk ${document.getElementById('jml').value} orang.`;
-            window.open(`https://wa.me/628112345678?text=${encodeURIComponent(msg)}`, '_blank');
+            const nama = document.getElementById('resNama').value;
+            const tgl = document.getElementById('resTanggal').value;
+            const jml = document.getElementById('resJumlah').value;
+            const pesan = `Halo Warung Timlo, saya ingin reservasi untuk tanggal ${tgl} berjumlah ${jml} orang atas nama ${nama}.`;
+            window.open(`https://wa.me/628112345678?text=${encodeURIComponent(pesan)}`, '_blank');
         }
     </script>
 </body>
